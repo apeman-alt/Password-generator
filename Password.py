@@ -1,8 +1,11 @@
 #Josh Muszka
-#Created Jan 29, 2022
+#Created Jan 28, 2022
 #Last updated Jan 29, 2022
-#A password generator, gives user the option to create their own custom password
+#A password generator, gives user the option to create their own custom password or generate a random one
 #If user chooses custom password, program makes sure that it's between 6 and 16 characters, has at least one number, one lower case letter, one upper case letter, and one symbol
+#If user chooses a random password, a 16-character-long password of random ASCII characters is given to the user
+
+import random
 
 def check_number(password):
 
@@ -60,12 +63,12 @@ def check_length(password):
 
 print("Welcome to password setup")
 print("Would you like to set a custom password or generate a random one?")
-print("TYPE 0 for custom and 1 for random") #will add random password feature in the future
+print("TYPE 0 for custom and 1 for random")
 
 choice = input()
 password = ""
 
-while not choice == '0':
+while not choice == '0' and not choice == '1':
      print("Error: Please pick a valid option")
      choice = input()
 
@@ -110,9 +113,12 @@ if choice == '0':
         contains_lowercase = check_lowercase(password)
         correct_length = check_length(password)
 
-#if choice == 1:
-#    print()
+#randomly generated password
+if choice == '1':
+    for i in range(16): #generate a password of random ASCII characters that is 16 characters long
+        password += chr(random.randint(33,126))
 
+#print the user's password
 print("Your new password is: " + password)
 
 
